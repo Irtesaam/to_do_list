@@ -1,5 +1,3 @@
-# to_do_list
-This is a to-do list website
-
-You can visit the live site [here](https://irtesaam.github.io/to_do_list/).
+Bug Fix Vedio
+https://www.loom.com/share/e9c1775e2b88486589b027c893811620?sid=ac70fbeb-2ae9-4bf4-a06e-93aec70ef7c0
 
