@@ -1,26 +1,24 @@
 function getAndUpdate() {
-    console.log("updating list...");
-    // This adds event listener for clicking event on 'Add to list' button. So whenever we click on Add to list, it will print 'updating list...' in console in inspect.
-    // currently the local storage is empty, and if we check localstorage.getItem('itemsJSON') ..then it will show null
-
-
-    tit = document.getElementById('title').value; // tit stores whatever is the value of elem with id=title
-    desc = document.getElementById('description').value; // desc stores whatever is the value of elem with id=description
-    if (localStorage.getItem('itemsJSON') == null) {  // if condition for itemsJSON=null
-        itemJsonArray = []; // creates an empty array
-        itemJsonArray.push([tit, desc]); // push the values of tit & desc to the array
-        localStorage.setItem('itemsJSON', JSON.stringify(itemJsonArray)); // When we call localStorage.setItem(key, value), it stores the specified value under the specified key in the browser's localStorage.
-        // stringify function in JavaScript converts an object into a JSON string. This method is commonly used to send data from the client side to a web server in a string format
-        // Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays. But, JavaScript arrays are best described as arrays.
-    }
-    else { // if the localstorage is not empty
-        itemJsonArrayStr = localStorage.getItem('itemsJSON'); // since the output will be string so we need to parse it first
-        itemJsonArray = JSON.parse(itemJsonArrayStr); // parse convert a JSON string into a JavaScript object
-        itemJsonArray.push([tit, desc]); // this continues to add on the data to localstorage even if its not empty
+    console.log("Updating list...");
+    
+    let title = document.getElementById('title').value.trim(); // Get the title and trim any whitespace
+    let description = document.getElementById('description').value.trim(); // Get the description and trim any whitespace
+    
+    if (title !== "" && description !== "") { // Check if both title and description are not empty
+        if (localStorage.getItem('itemsJSON') === null) {
+            itemJsonArray = [];
+        } else {
+            itemJsonArray = JSON.parse(localStorage.getItem('itemsJSON'));
+        }
+        
+        itemJsonArray.push([title, description]);
         localStorage.setItem('itemsJSON', JSON.stringify(itemJsonArray));
+        update();
+    } else {
+        alert("Please enter both title and description."); // Alert user if either field is empty
     }
-    update();
 }
+
 
 function update() {
     if (localStorage.getItem('itemsJSON') == null) {  // if condition for itemsJSON=null
